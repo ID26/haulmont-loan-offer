@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<!--    как то нужно изменить ссылку th:action="@{/clients/edit}-->
+<form th:fragment="form(client)" method="post" th:action="@{/clients/new}" th:object="${client}"
+      class="row g-3 needs-validation" novalidate>
+    <div class="container px-4">
+        <div class="row g-3 align-items-center mt-1">
+            <div class="col-md-2">
+                <label for="fullName">Full Name: </label>
+            </div>
+            <div class="col-md-5 position-relative">
+                <input type="text" th:field="*{fullName}" class="form-control" id="fullName"
+                       th:value="${client.phone}" placeholder="Enter you full name" required/>
+                <sub style="color:red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">error</sub>
+            </div>
+        </div>
+        <div class="row g-3 align-items-center mt-1">
+            <div class="col-md-2">
+                <label for="phone" class="form-label">Phone</label>
+            </div>
+            <div class="col-md-5 position-relative">
+                <input type="text" th:field="*{phone}" class="form-control" id="phone" th:value="${client.phone}"
+                       placeholder="Enter you phone" required/>
+                <sub style="color:red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">error</sub>
+            </div>
+        </div>
+        <div class="row g-3 align-items-center mt-1">
+            <div class="col-md-2">
+                <label for="email" class="form-label ml">Email</label>
+            </div>
+            <div class="col-md-5 position-relative">
+                <input type="text" th:field="*{email}" class="form-control" id="email" th:value="${client.email}"
+                       placeholder="Enter you email" required/>
+                <sub style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">error</sub>
+            </div>
+        </div>
+        <div class="row g-3 align-items-center mt-1">
+            <div class="col-md-2">
+                <label for="passportNumber" class="form-label">Passport number</label>
+            </div>
+            <div class="col-md-5 position-relative">
+                <input type="text" th:field="*{passportNumber}" class="form-control" id="passportNumber"
+                       th:value="${client.passportNumber}" placeholder="Enter you passport number" required/>
+                <sub style="color:red" th:if="${#fields.hasErrors('passportNumber')}" th:errors="*{passportNumber}">error</sub>
+            </div>
+        </div>
+        <div class="row g-3 align-items-center mt-1">
+            <div class="col-md-5 position-relative">
+                <button class="btn btn-primary" type="submit">Submit form</button>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="id" name="id" th:value="*{id}"/>
+</form>
+</body>
+</html>

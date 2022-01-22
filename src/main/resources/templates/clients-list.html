@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout-page}">
+<head>
+    <title>All clients</title>
+</head>
+<body>
+<div layout:fragment="site_content">
+    <div th:each="client, i : ${clients}">
+        <a th:href="@{/clients/{id}(id=${client.id})}"
+           th:text="${i.count} + '. ' + ${client.id} + ' ' + ${client.fullName} + ' ' + ${client.phone} + ' '
+           + ${client.email} + ' ' + ${client.passportNumber}">Data</a>
+    </div>
+</div>
+</body>
+</html>
