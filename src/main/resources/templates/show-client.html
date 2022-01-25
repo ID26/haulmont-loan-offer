@@ -1,28 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{layouts/layout-page}">
+<html lang="en" layout:decorate="~{layouts/layout-page}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Client info</title>
 </head>
 <body>
-    <div layout:fragment="site_content">
-        <div class="card-body">
-            <h3 class="card-title" th:text="${client.fullName}">name</h3>
-            <p class="card-text" th:text="${client.phone}">phone</p>
-            <p class="card-text" th:text="${client.email}">email</p>
-            <p class="card-text" th:text="${client.passportNumber}">passportNumber</p>
-            <p class="card-text" th:text="${client.id}">id</p>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <form th:action="'/clients/' + ${client.id} + '/edit'" th:method="get">
-                    <button type="submit" class="btn btn-primary">Edit</button>
-                </form>
-            </div>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <form th:action="'/clients/' + ${client.id} + '/delete'" th:method="post">
-                    <button type="submit" class="btn btn-primary">Delete</button>
-                </form>
-            </div>
+<div layout:fragment="site_content">
+    <div class="card-body">
+        <h3 class="card-title" th:text="${client.fullName}">name</h3>
+        <p class="card-text" th:text="${client.phone}">phone</p>
+        <p class="card-text" th:text="${client.email}">email</p>
+        <p class="card-text" th:text="${client.passportNumber}">passportNumber</p>
+        <!--            <p class="card-text" th:text="${client.id}">id</p>-->
+        <div aria-label="Basic example" class="btn-group" role="group">
+            <form th:action="'/clients/' + ${client.id} + '/edit'" th:method="get">
+                <button class="btn btn-primary" type="submit">Edit</button>
+            </form>
+        </div>
+        <div aria-label="Basic example" class="btn-group" role="group">
+            <form th:action="'/clients/' + ${client.id} + '/delete'" th:method="post">
+                <button class="btn btn-primary" type="submit">Delete</button>
+            </form>
         </div>
     </div>
+    <hr/>
+    <button aria-controls="collapseExample" aria-expanded="false" class="btn btn-primary" data-bs-target="#collapseExample"
+            data-bs-toggle="collapse" type="button">
+        New Loan Offer
+    </button>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body text-white bg-dark">
+            <form class="row g-3 needs-validation" method="post" novalidate
+                  th:action="@{/loan-offer/new}" th:object="${loanOffer}">
+                <div class="container px-4">
+                    <div class="row g-3 align-items-center mt-1">
+                        <div class="col-md-2">
+                            <label for="credit">Credit</label>
+                        </div>
+                        <div class="col-md-5 position-relative">
+                            <input class="form-control" id="credit" placeholder="Select credit type" required
+                                   th:field="*{amountCredit}" th:value="${loanOffer.amountCredit}"
+                                   type="number"/>
+                            <sub style="color:red" th:errors="*{amountCredit}"
+                                 th:if="${#fields.hasErrors('amountCredit')}">error</sub>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center mt-1">
+                        <div class="col-md-2">
+                            <label for="amount">Amount credit: </label>
+                        </div>
+                        <div class="col-md-5 position-relative">
+                            <input class="form-control" id="amount" placeholder="Enter amount" required
+                                   th:field="*{amountCredit}" th:value="${loanOffer.amountCredit}"
+                                   type="number"/>
+                            <sub style="color:red" th:errors="*{amountCredit}"
+                                 th:if="${#fields.hasErrors('amountCredit')}">error</sub>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center mt-1">
+                        <div class="col-md-2">
+                            <label class="form-label" for="quantityMonth">Quantity Month: </label>
+                        </div>
+                        <div class="col-md-5 position-relative">
+                            <input class="form-control" id="quantityMonth" placeholder="Enter quantity month" required
+                                   th:field="*{quantityMonth}"
+                                   th:value="${loanOffer.quantityMonth}" type="number"/>
+                            <sub style="color:red" th:errors="*{quantityMonth}"
+                                 th:if="${#fields.hasErrors('quantityMonth')}">error</sub>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center mt-1">
+                        <div class="col-md-5 position-relative">
+                            <button class="btn btn-primary" type="submit">Submit form</button>
+                        </div>
+                    </div>
+                </div>
+                <input id="id" name="id" th:value="${client.id}" type="hidden"/>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

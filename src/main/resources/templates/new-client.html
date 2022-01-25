@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{layouts/layout-page}">
+<html lang="en" layout:decorate="~{layouts/layout-page}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>New client</title>
 </head>
 <body>
 <div layout:fragment="site_content">
-    <form th:replace="fragments/form :: form(client=${client})"></form>
+    <form th:replace="fragments/form-new-client :: form(client=${client})"></form>
 </div>
 </body>
 </html>

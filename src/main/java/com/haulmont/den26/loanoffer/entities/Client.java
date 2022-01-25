@@ -3,11 +3,10 @@ package com.haulmont.den26.loanoffer.entities;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -40,10 +39,14 @@ public class Client {
     @Size(min = 6, max = 20, message = "Passport number mast have from 6 to 20 characters!")
     private String passportNumber;
 
-//    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-//    @JoinColumn(name = "bank_id")
-//    @ToString.Exclude
-//    private Bank bank;
+//    @OneToMany
+//    private List<LoanOffer> loanOffers;
+
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "bank_id")
+    @ToString.Exclude
+    private Bank bank;
 
     public Client(String fullName, String phone, String email, String passportNumber) {
         this.fullName = fullName;

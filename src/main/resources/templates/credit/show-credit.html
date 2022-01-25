@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/layout-page}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Show credit</title>
+</head>
+<body>
+<div layout:fragment="site_content">
+    <div class="card-body">
+        <h3 class="card-title" th:text="${credit.name}">name</h3>
+        <p class="card-text" th:text="${credit.creditLimit}">phone</p>
+        <p class="card-text" th:text="${credit.percent}">email</p>
+
+        <div aria-label="Basic example" class="btn-group" role="group">
+            <form th:action="'/credits/' + ${credit.id} + '/edit'" th:method="get">
+                <button class="btn btn-primary" type="submit">Edit</button>
+            </form>
+        </div>
+        <div aria-label="Basic example" class="btn-group" role="group">
+            <form th:action="'/credits/' + ${credit.id} + '/delete'" th:method="post">
+                <button class="btn btn-primary" type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

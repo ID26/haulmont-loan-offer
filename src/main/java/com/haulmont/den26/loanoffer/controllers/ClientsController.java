@@ -1,7 +1,10 @@
 package com.haulmont.den26.loanoffer.controllers;
 
 import com.haulmont.den26.loanoffer.entities.Client;
+import com.haulmont.den26.loanoffer.entities.LoanOffer;
+import com.haulmont.den26.loanoffer.repositories.BankRepository;
 import com.haulmont.den26.loanoffer.repositories.ClientRepository;
+import com.haulmont.den26.loanoffer.repositories.LoanOfferRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,8 @@ import java.util.UUID;
 public class ClientsController {
 
     private final ClientRepository clientRepository;
+    private final BankRepository bankRepository;
+    private final LoanOfferRepository loanOfferRepository;
 
     @GetMapping
     public String getAll(Model model) {
@@ -25,6 +30,20 @@ public class ClientsController {
         model.addAttribute("clients", clients);
         return "/clients-list";
     }
+
+    @PostMapping
+    public String filter(@RequestParam String filter, Model model) {
+        List<Client> clients = null;
+        if (filter != null && !filter.isEmpty()) {
+            clients = clientRepository.findAllByFullName(filter);
+        } else {
+            clients = clientRepository.findAll();
+        }
+        model.addAttribute("clients", clients);
+        model.addAttribute("filter", filter);
+        return "/clients-list";
+    }
+
 
     @GetMapping("/new")
     public String createClient(@ModelAttribute("client") Client client) {
@@ -36,6 +55,7 @@ public class ClientsController {
         if (bindingResult.hasErrors()) {
             return "/new-client";
         }
+        client.setBank(bankRepository.findAll().get(0));
         Client saveClient = clientRepository.save(client);
         return "redirect:/clients/" + saveClient.getId();
     }
@@ -44,6 +64,7 @@ public class ClientsController {
     public String showClient(@PathVariable("id") UUID id, Model model) {
         Client client = clientRepository.findById(id).orElse(null);
         model.addAttribute("client", client);
+        model.addAttribute("loanOffer", new LoanOffer());
         return "show-client";
     }
 
