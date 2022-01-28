@@ -5,8 +5,14 @@
     <title>Credits</title>
 </head>
 <body>
-<div layout:fragment="site_content">
-    <form action="/credits" class="row g-3" method="post">
+<header layout:fragment="header_content">
+    <header
+            th:replace="fragments/credit-header :: header(bankId=${bank.id}, bankName=${bank.bankName} ?: 'Haulmont')"></header>
+</header>
+<div layout:fragment="site_content" class="container mt-3">
+
+
+    <form action="/credits" class="row g-3 mt-3" method="post">
         <div class="col-sm-5">
             <input class="form-control" name="filter" placeholder="Search credit type"
                    th:value="*{filter}"
@@ -20,64 +26,9 @@
         <div class="mt-2" th:each="credit, i : ${credits}">
             <a th:href="@{/credits/{id}(id=${credit.id})}"
                th:text="${i.count} + '. '
-           + ${credit.name} + ' '
-           + ${credit.creditLimit} + ' '
-           + ${credit.percent}">Data</a>
-        </div>
-    </div>
-    <br/>
-    <button aria-controls="collapseExample" aria-expanded="false" class="btn btn-primary" data-bs-target="#collapseExample"
-            data-bs-toggle="collapse" type="button">
-        New Credit
-    </button>
-    <div class="collapse" id="collapseExample">
-        <div class="card card-body text-white bg-dark">
-            <form class="row g-3 needs-validation" method="post" novalidate
-                  th:action="@{/credits/new}" th:object="${credit}">
-                <div class="container px-4">
-                    <div class="row g-3 align-items-center mt-1">
-                        <div class="col-md-2">
-                            <label for="name">Credit name: </label>
-                        </div>
-                        <div class="col-md-5 position-relative">
-                            <input class="form-control" id="name" placeholder="Credit name" required
-                                   th:field="*{name}" th:value="${credit.name}"
-                                   type="text"/>
-                            <sub style="color:red" th:errors="*{name}"
-                                 th:if="${#fields.hasErrors('name')}">error</sub>
-                        </div>
-                    </div>
-                    <div class="row g-3 align-items-center mt-1">
-                        <div class="col-md-2">
-                            <label for="creditLimit">Credit limit: </label>
-                        </div>
-                        <div class="col-md-5 position-relative">
-                            <input class="form-control" id="creditLimit" placeholder="Credit limit" required
-                                   th:field="*{creditLimit}" th:value="${credit.creditLimit}"
-                                   type="number"/>
-                            <sub style="color:red" th:errors="*{creditLimit}"
-                                 th:if="${#fields.hasErrors('creditLimit')}">error</sub>
-                        </div>
-                    </div>
-                    <div class="row g-3 align-items-center mt-1">
-                        <div class="col-md-2">
-                            <label class="form-label" for="percent">Percent: </label>
-                        </div>
-                        <div class="col-md-5 position-relative">
-                            <input class="form-control" id="percent" placeholder="Percent" required
-                                   th:field="*{percent}"
-                                   th:value="${credit.percent}" type="number"/>
-                            <sub style="color:red" th:errors="*{percent}"
-                                 th:if="${#fields.hasErrors('percent')}">error</sub>
-                        </div>
-                    </div>
-                    <div class="row g-3 align-items-center mt-1">
-                        <div class="col-md-5 position-relative">
-                            <button class="btn btn-primary" type="submit">Submit form</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+                       + ${credit.name} + ' '
+                       + ${credit.creditLimit} + ' '
+                       + ${credit.percent}">Data</a>
         </div>
     </div>
 </div>

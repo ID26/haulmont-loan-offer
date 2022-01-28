@@ -5,6 +5,10 @@
     <title>All clients</title>
 </head>
 <body>
+<header layout:fragment="header_content">
+    <header
+            th:replace="fragments/client-header :: header(bankId=${bank.id}, bankName=${bank.bankName} ?: 'Haulmont')"></header>
+</header>
 <div layout:fragment="site_content">
     <form action="/clients" class="row g-3" method="post">
         <div class="col-sm-5">
@@ -14,9 +18,10 @@
         <div class="col-auto">
             <button class="btn btn-primary ml-2" type="submit">Search</button>
         </div>
+
     </form>
     <div th:if="${not #lists.isEmpty(clients)}">
-        <div class="mt-2" th:each="client, i : ${clients}">
+        <div class="mt-4" th:each="client, i : ${clients}">
             <a th:href="@{/clients/{id}(id=${client.id})}"
                th:text="${i.count} + '. '
            + ${client.fullName} + ' '

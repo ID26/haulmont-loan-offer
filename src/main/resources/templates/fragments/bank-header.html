@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="header(bankName)">
+    <div>
+        <h3 class="float-md-start mb-0">[(${bankName})]</h3>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a aria-current="page" class="nav-link active" href="/">Home</a>
+            <a class="nav-link" href="/banks">Bank list</a>
+            <a class="nav-link" href="/banks/new">New Bank</a>
+<!--            <a class="nav-link" href="/clients">Clients</a>-->
+<!--            <a class="nav-link" href="/credits">Credits</a>-->
+        </nav>
+    </div>
+</header>
+</body>
+</html>

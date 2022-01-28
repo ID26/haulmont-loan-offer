@@ -2,15 +2,15 @@
 <html lang="en" layout:decorate="~{layouts/layout-page}" xmlns:layout="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edit credit</title>
+    <title>New client</title>
 </head>
 <body>
 <header layout:fragment="header_content">
     <header
-            th:replace="fragments/credit-header :: header(bankId=${bank.id}, bankName=${bank.bankName} ?: 'Haulmont')"></header>
+            th:replace="fragments/client-header :: header(bankId=${bank.id}, bankName=${bank.bankName} ?: 'Haulmont')"></header>
 </header>
 <div layout:fragment="site_content">
-    <div th:replace="fragments/form-new-edit-credit :: form(credit=${credit}, path=${path})"></div>
+    <form th:replace="fragments/form-new-edit-client :: form(client=${client}, path=${path})"></form>
 </div>
 </body>
 </html>

@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -19,6 +21,8 @@ public class Bank {
     @GeneratedValue
     private UUID id;
 
+    @NotBlank(message = "Bank name can't be empty")
+    @Size(min = 2, max = 255, message = "Bank name mast have from 2 to 255 characters!")
     private String bankName;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)

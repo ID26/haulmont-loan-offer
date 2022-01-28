@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/layout-page}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bank list</title>
+</head>
+<body>
+<header layout:fragment="header_content">
+    <header th:replace="fragments/bank-header :: header(bankName=${bankName} ?: 'Haulmont')"></header>
+</header>
+<div layout:fragment="site_content" class="">
+        <form action="/banks" class="row g-3 mt-3" method="post">
+            <div class="col-sm-5">
+                <input class="form-control" name="filter" placeholder="Search by name" th:value="${filter}"
+                       type="text">
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary ml-2" type="submit">Search</button>
+            </div>
+        </form>
+        <div th:if="${not #lists.isEmpty(banks)}">
+            <div class="mt-4" th:each="bank, i : ${banks}">
+                <a th:href="@{/banks/{id}(id=${bank.id})}"
+                   th:text="${i.count} + '. ' + ${bank.bankName}">Data</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

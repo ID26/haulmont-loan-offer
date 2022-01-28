@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="form(credit, path)" th:object="${credit}">
+    <form class="row g-3 needs-validation" method="post" novalidate
+          th:action="@{/credits/{path}(path=${path})}">
+        <div class="container px-4">
+            <div class="row g-3 align-items-center mt-1">
+                <div class="col-md-2">
+                    <label for="name">Credit name: </label>
+                </div>
+                <div class="col-md-5 position-relative">
+                    <input class="form-control" id="name" placeholder="Credit name" required
+                           th:field="*{name}" th:value="${credit.name}"
+                           type="text"/>
+                    <sub style="color:red" th:errors="*{name}"
+                         th:if="${#fields.hasErrors('name')}">error</sub>
+                </div>
+            </div>
+            <div class="row g-3 align-items-center mt-1">
+                <div class="col-md-2">
+                    <label for="creditLimit">Credit limit: </label>
+                </div>
+                <div class="col-md-5 position-relative">
+                    <input class="form-control" id="creditLimit" placeholder="Credit limit" required
+                           th:field="*{creditLimit}" th:value="${credit.creditLimit}"
+                           type="number"/>
+                    <sub style="color:red" th:errors="*{creditLimit}"
+                         th:if="${#fields.hasErrors('creditLimit')}">error</sub>
+                </div>
+            </div>
+            <div class="row g-3 align-items-center mt-1">
+                <div class="col-md-2">
+                    <label class="form-label" for="percent">Percent: </label>
+                </div>
+                <div class="col-md-5 position-relative">
+                    <input class="form-control" id="percent" placeholder="Percent" required
+                           th:field="*{percent}"
+                           th:value="${credit.percent}" type="number"/>
+                    <sub style="color:red" th:errors="*{percent}"
+                         th:if="${#fields.hasErrors('percent')}">error</sub>
+                </div>
+            </div>
+            <div class="row g-3 align-items-center mt-1">
+                <div class="col-md-5 position-relative">
+                    <button class="btn btn-primary" type="submit">Submit form</button>
+                </div>
+            </div>
+        </div>
+        <input id="id" name="id" th:value="*{id}" type="hidden"/>
+    </form>
+</div>
+</body>
+</html>

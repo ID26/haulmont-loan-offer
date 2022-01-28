@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -28,6 +29,11 @@ public class LoanOffer {
 
     private Integer quantityMonth;
 
-    @OneToOne
-    private PaymentScheduler paymentScheduler;
+    @OneToMany
+    private List<PaymentScheduler> paymentScheduler;
 }
+
+//    o Клиент
+//    o Кредит
+//    o Сумма кредита
+//
