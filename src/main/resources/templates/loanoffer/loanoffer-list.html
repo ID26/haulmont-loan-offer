@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/layout-page}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All loan offer</title>
+</head>
+<body>
+<header layout:fragment="header_content">
+    <header
+            th:replace="fragments/loanoffer-header :: header(
+            clientId=${client.id},
+            clientName=${client.fullName} ?: 'Unknown',
+            bankName=${client.bank.bankName} ?: 'Haulmont')"></header>
+</header>
+<div layout:fragment="site_content">
+    <form action="/loan-offer" class="row g-3" method="post">
+        <div class="col-sm-5">
+            <input class="form-control" name="filter" placeholder="Search by amount" th:value="${filter}"
+                   type="text">
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary ml-2" type="submit">Search</button>
+        </div>
+
+    </form>
+    <div th:if="${not #lists.isEmpty(loanOffers)}">
+        <div class="mt-4" th:each="loanOffer, i : ${loanOffers}">
+            <a th:href="@{/loan-offers/{id}(id=${loanOffers.id})}"
+               th:text="${i.count} + '. '
+           + ${loanOffer.credit.name} + ' '
+           + ${loanOffer.amountCredit} + ' '
+           + ${loanOffer.quantityMonth} + ' '
+           + ${loanOffer.id}">Data</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

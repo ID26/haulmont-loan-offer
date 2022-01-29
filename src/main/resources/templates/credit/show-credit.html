@@ -14,7 +14,6 @@
         <h3 class="card-title" th:text="${credit.name}">name</h3>
         <p class="card-text" th:text="${credit.creditLimit}">phone</p>
         <p class="card-text" th:text="${credit.percent}">email</p>
-
         <div aria-label="Basic example" class="btn-group" role="group">
             <form th:action="'/credits/' + ${credit.id} + '/edit'" th:method="get">
                 <button class="btn btn-primary" type="submit">Edit</button>

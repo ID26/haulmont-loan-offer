@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -39,9 +40,8 @@ public class Client {
     @Size(min = 6, max = 20, message = "Passport number mast have from 6 to 20 characters!")
     private String passportNumber;
 
-//    @OneToMany
-//    private List<LoanOffer> loanOffers;
-
+    @OneToMany
+    private List<LoanOffer> loanOffers;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "bank_id")

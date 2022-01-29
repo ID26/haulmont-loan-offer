@@ -25,13 +25,11 @@ public class ClientsController {
 
     private final ClientRepository clientRepository;
     private final BankRepository bankRepository;
-    private final LoanOfferRepository loanOfferRepository;
     private final CreditRepository creditRepository;
 
-    public ClientsController(ClientRepository clientRepository, BankRepository bankRepository, LoanOfferRepository loanOfferRepository, CreditRepository creditRepository) {
+    public ClientsController(ClientRepository clientRepository, BankRepository bankRepository, CreditRepository creditRepository) {
         this.clientRepository = clientRepository;
         this.bankRepository = bankRepository;
-        this.loanOfferRepository = loanOfferRepository;
         this.creditRepository = creditRepository;
     }
 

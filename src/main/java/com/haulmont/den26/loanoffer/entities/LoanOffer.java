@@ -24,7 +24,6 @@ public class LoanOffer {
     @OneToOne
     private Client client;
 
-
     private Long amountCredit;
 
     private Integer quantityMonth;
@@ -32,8 +31,3 @@ public class LoanOffer {
     @OneToMany
     private List<PaymentScheduler> paymentScheduler;
 }
-
-//    o Клиент
-//    o Кредит
-//    o Сумма кредита
-//

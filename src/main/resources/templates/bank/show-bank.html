@@ -9,7 +9,6 @@
     <header th:replace="fragments/bank-header :: header(bankName=${bank.bankName} ?: 'Haulmont')"></header>
 </header>
 <div layout:fragment="site_content">
-    <!--    <div class="card-body">-->
     <div class="row mt-3">
         <div class="col">
             <h3 th:text="${bank.bankName}">name</h3>
@@ -30,17 +29,14 @@
             </div>
         </div>
     </div>
-
-        <form class="d-grid gap-2 mt-5" th:action="'/clients'" th:method="get">
-            <button class="btn btn-primary" type="submit">Clients</button>
-            <input name="bankId" th:value="${bank.id}" type="hidden"/>
-        </form>
-
-        <form class="d-grid gap-2 mt-5" th:action="'/credits'" th:method="get">
-            <button class="btn btn-primary" type="submit">Credits</button>
-            <input name="bankId" th:value="${bank.id}" type="hidden"/>
-        </form>
-
+    <form class="d-grid gap-2 mt-5" th:action="'/clients'" th:method="get">
+        <button class="btn btn-primary" type="submit">Clients</button>
+        <input name="bankId" th:value="${bank.id}" type="hidden"/>
+    </form>
+    <form class="d-grid gap-2 mt-5" th:action="'/credits'" th:method="get">
+        <button class="btn btn-primary" type="submit">Credits</button>
+        <input name="bankId" th:value="${bank.id}" type="hidden"/>
+    </form>
 </div>
 </body>
 </html>

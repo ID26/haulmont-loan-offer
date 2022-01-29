@@ -18,7 +18,6 @@
         <div class="col-auto">
             <button class="btn btn-primary ml-2" type="submit">Search</button>
         </div>
-
     </form>
     <div th:if="${not #lists.isEmpty(clients)}">
         <div class="mt-4" th:each="client, i : ${clients}">

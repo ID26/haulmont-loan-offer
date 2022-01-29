@@ -10,8 +10,6 @@
             th:replace="fragments/credit-header :: header(bankId=${bank.id}, bankName=${bank.bankName} ?: 'Haulmont')"></header>
 </header>
 <div layout:fragment="site_content" class="container mt-3">
-
-
     <form action="/credits" class="row g-3 mt-3" method="post">
         <div class="col-sm-5">
             <input class="form-control" name="filter" placeholder="Search credit type"

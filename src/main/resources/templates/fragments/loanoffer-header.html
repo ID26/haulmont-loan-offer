@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="header(clientId, clientName, bankName)">
+    <div>
+        <h3 class="float-md-start mb-0">[(${bankName})] <em>[(${clientName})]</em></h3>
+
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a aria-current="page" class="nav-link active" href="/">Home</a>
+<!--            <a class="nav-link" href="/banks">Clients list</a>-->
+<!--            <a class="nav-link" th:href="@{/banks/{id}(id=${bankId})}" href="#">Bank [(${bankName})]</a>-->
+            <a class="nav-link" th:href="@{/loan-offer(clientId=${clientId})}" href="/loan-offer">Loan offers list</a>
+            <a class="nav-link" th:href="@{/loan-offer/new(clientId=${clientId})}" href="/loan-offer/new">New loan offer</a>
+        </nav>
+    </div>
+</header>
+</body>
+</html>

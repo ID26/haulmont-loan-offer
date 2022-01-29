@@ -2,6 +2,7 @@ package com.haulmont.den26.loanoffer.repositories;
 
 import com.haulmont.den26.loanoffer.entities.Bank;
 import com.haulmont.den26.loanoffer.entities.Client;
+import com.haulmont.den26.loanoffer.entities.LoanOffer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
