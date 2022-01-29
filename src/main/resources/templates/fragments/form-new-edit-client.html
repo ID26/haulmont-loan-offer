@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-md-5 position-relative">
                     <input class="form-control" id="fullName" placeholder="Enter you full name" required
-                           th:field="*{fullName}" th:value="${client.phone}" type="text"/>
+                           th:field="*{fullName}" th:value="${client.fullName}" type="text"/>
                     <sub style="color:red" th:errors="*{fullName}" th:if="${#fields.hasErrors('fullName')}">error</sub>
                 </div>
             </div>

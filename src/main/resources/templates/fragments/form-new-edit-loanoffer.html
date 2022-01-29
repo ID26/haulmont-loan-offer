@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="form(loanOffer, path, client, credits)" th:object="${loanOffer}">
+    <form class="row g-3 needs-validation" method="post" novalidate
+          th:action="@{/loan-offer/{path}(path=${path})}">
+        <div class="container px-4">
+            <div class="row g-3 align-items-center mt-1">
+                <div class="col-md-2">
+                    <label for="client">Client: </label>
+                </div>
+                <div class="col-md-5 position-relative">
+                    <input class="form-control" id="client" readonly="readonly"
+                           th:field="*{client.fullName}"
+                           th:value="${client.fullName}"
+                           type="text"/>
+                </div>
+            </div>
+<!--            обязательно сделать проверку налиичия кредитов в данном банке-->
+            <div class="row g-3 align-items-center mt-1">
+                <div class="col-md-2">
+                    <label class="form-label" for="credits">Credit</label>
+                </div>
+                <div class="col-md-5 position-relative">
+                    <select class="form-select" name="credits" id="credits" th:field="*{credit.id}">
+                        <option th:each="credit : ${credits}"
+                                th:value="${credit.id}"
+                                th:text="${credit.name + ' (' + credit.percent + '%, ' + credit.creditLimit + ')'}">
+                            Credit
+                        </option>
+                    </select>
+                </div>
+            </div>
+<!--            тут либо в форме, либо на сервере нужно проверить чтоб сумма не перевышала лимит по кредиту-->
+            <div class="row g-3 align-items-center mt-1">
+                <div class="col-md-2">
+                    <label class="form-label" for="amountCredit">Amount credit</label>
+                </div>
+                <div class="col-md-5 position-relative">
+                    <input class="form-control" id="amountCredit" placeholder="Enter amount" required
+                           th:field="*{amountCredit}"
+                           th:value="${loanOffer.amountCredit}" type="number"/>
+                    <sub style="color:red" th:errors="*{amountCredit}" th:if="${#fields.hasErrors('amountCredit')}">
+                        error</sub>
+                </div>
+            </div>
+            <div class="row g-3 align-items-center mt-1">
+                <div class="col-md-2">
+                    <label class="form-label ml" for="quantityMonth">Quantity months</label>
+                </div>
+                <div class="col-md-5 position-relative">
+                    <input class="form-control" id="quantityMonth" placeholder="Enter quantity months" required
+                           th:field="*{quantityMonth}"
+                           th:value="${loanOffer.quantityMonth}" type="number"/>
+                    <sub style="color:red" th:errors="*{quantityMonth}" th:if="${#fields.hasErrors('quantityMonth')}">error</sub>
+                </div>
+            </div>
+            <div class="row g-3 align-items-center mt-1">
+                <div class="col-md-5 position-relative">
+                    <button class="btn btn-primary" type="submit">Submit form</button>
+                </div>
+            </div>
+        </div>
+        <input id="id" name="id" th:value="*{id}" type="hidden"/>
+    </form>
+</div>
+</body>
+</html>

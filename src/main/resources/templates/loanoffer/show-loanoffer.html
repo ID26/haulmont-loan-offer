@@ -7,7 +7,10 @@
 <body>
 <header layout:fragment="header_content">
     <header
-            th:replace="fragments/client-header :: header(bankId=${bank.id}, bankName=${bank.bankName} ?: 'Haulmont')"></header>
+            th:replace="fragments/loanoffer-header :: header(
+            clientId=${client.id},
+            clientName=${client.fullName} ?: 'Unknown',
+            bankName=${client.bank.bankName} ?: 'Haulmont')"></header>
 </header>
 <div layout:fragment="site_content">
     <div class="card-body">

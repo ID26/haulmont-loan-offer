@@ -59,14 +59,15 @@ public class LoanOfferController {
     }
 
 
-//    @GetMapping("/new")
-//    public String createLoanOffer(@RequestParam(value = "clientId", required = false) UUID id,
-//                               @ModelAttribute("loanOffer") LoanOffer loanOffer, Model model) {
-//        model.addAttribute("path", "new" );
-//        model.addAttribute("client", client);
-//        return "/loanoffer/new-loanoffer";
-//    }
-//
+    @GetMapping("/new")
+    public String createLoanOffer(@RequestParam(value = "clientId", required = false) UUID id,
+                               @ModelAttribute("loanOffer") LoanOffer loanOffer, Model model) {
+        model.addAttribute("path", "new" );
+        model.addAttribute("client", client);
+        model.addAttribute("credits", creditRepository.findAll());
+        return "/loanoffer/new-loanoffer";
+    }
+
 //    @PostMapping("/new")
 //    public String addLoanOffer(@RequestParam(value = "clientId", required = false) UUID id,
 //                            @ModelAttribute("loanOffer") @Valid LoanOffer loanOffer,

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/layout-page}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New client</title>
+</head>
+<body>
+<header layout:fragment="header_content">
+    <header
+            th:replace="fragments/loanoffer-header :: header(
+            clientId=${client.id},
+            clientName=${client.fullName} ?: 'Unknown',
+            bankName=${client.bank.bankName} ?: 'Haulmont')"></header>
+</header>
+<div layout:fragment="site_content">
+    <form
+            th:replace="fragments/form-new-edit-loanoffer :: form(loanOffer=${loanOffer}, path=${path}, client=${client}, credits=${credits})"></form>
+</div>
+</body>
+</html>
